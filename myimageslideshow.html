@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>Image Gallery</title>
+<!--for importing bootstrap-->
+		<link rel="stylesheet" type="text/css"href="bootstrap.css">
+<!-- import our own stylesheet -->
+		<link rel="stylesheet" type="text/css" href="styles.css">
+<!-- import jQuery -->
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		</head>
+		<body>
+		<header>
+			<h1>Manali At Glance</h1>
+			<h2>Solang valley, Rohtang Pass, Bhrigu Lake and Hidimba Devi Temple</h2><hr>
+		</header>
+		<div class="container">
+		<h1>SlideShow using JQuery</h1><br>
+
+		<!--boosrap syntax container contains row as well as column class-->
+		<div class="row">
+			<div class="col-md-3">
+				<img id="image1" class="crop-img" src="MANNALI4.jpg" alt="manali_1"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image2" class="crop-img" src="MANALI2.jpg" alt="manali_2"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image3" class="crop-img" src="MANALI1.jpg" alt="manali_3"/> 
+			</div>
+			<div class="col-md-3">
+				<img id="image4" class="crop-img" src="MANALI3.jpg" alt="manali_4"/> 
+			</div>
+		</div> <br>
+			<!-- now adding the backward and forward button for the user  via html entities i.e &lt for < and &gt for >  and the image to start the slider from -->
+			<div class="row">
+			<div class="col-md-2">
+				<button id="backward">&lt;</button>
+			</div>
+			<div class="col-md-8">
+				<img id="bigImage" class="large-img" src="img_1.jpg" alt="MANALI AT GLANCE"/> 
+			</div>
+			<div class="col-md-2">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+				<button id="forward"> &gt; </button>
+			</div>
+		</div>
+	</div>
+	<script>
+		
+		var paused = false;
+		$(".crop-img").click(function(){
+			$("#bigImage").attr('src', 
+				$(this).attr('src'));
+		});
+		var counter = 1;
+		$("#image"+counter).click();
+		$("#backward").click(function (){
+			counter = counter - 1;
+			if(counter < 1){
+				counter = 4;
+			}
+			$("#image"+counter).click();
+		});
+		$("#forward").click(function (){
+			counter = counter + 1;
+			if(counter > 4){
+				counter = 1;
+			}
+			$("#image"+counter).click();
+		}); 
+		$("#bigImage").click(function (){
+			paused = !paused;
+		});
+		setInterval(function (){
+			if(!paused){
+				$("#forward").click();
+			};
+		}, 4000);
+	</script>
+	</body>
+</html>
+
+
+
+
+
+
+
